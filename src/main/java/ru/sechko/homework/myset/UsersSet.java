@@ -9,22 +9,25 @@ public class UsersSet {
     public static Set<String> activeLastWeek =  new HashSet<>(Arrays.asList("Bob", "Diana", "Eve", "Frank"));
 
     public static Set<String> crossUsers (Set<String> onlineUsers,  Set<String> activeLastWeek) {
-        Set<String> crossUsers = new HashSet<>();
-        for (String onlineUser : onlineUsers) {
-            if (activeLastWeek.contains(onlineUser)) {
-                crossUsers.add(onlineUser);
-            }
-        }
+        Set<String> crossUsers = new HashSet<>(onlineUsers);
+//        for (String onlineUser : onlineUsers) {
+//            if (activeLastWeek.contains(onlineUser)) {
+//                crossUsers.add(onlineUser);
+//            }
+//        }
+        crossUsers.retainAll(activeLastWeek);
         return crossUsers;
     }
 
+
     public static Set<String> noCrossUsers (Set<String> onlineUsers, Set<String> activeLastWeek) {
-        Set<String> noCrossUsers = new HashSet<>();
-        for (String onlineUser : onlineUsers) {
-            if (!activeLastWeek.contains(onlineUser)) {
-                noCrossUsers.add(onlineUser);
-            }
-        }
+        Set<String> noCrossUsers = new HashSet<>(onlineUsers);
+//        for (String onlineUser : onlineUsers) {
+//            if (!activeLastWeek.contains(onlineUser)) {
+//                noCrossUsers.add(onlineUser);
+//            }
+//        }
+        noCrossUsers.removeAll(activeLastWeek);
         return noCrossUsers;
     }
 
